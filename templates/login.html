@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+
+    <style>
+        .card-container {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            width: 70%;
+        }
+
+        .card {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+            width: 200px;
+            padding: 25px;
+            height: 350px;
+            background-color: #3300ff;
+            color: rgb(255, 255, 255);
+        }
+    </style>
+</head>
+
+<body>
+    <center>
+        <div class="card-container">
+            <div class="card">
+                <h2>Login</h2>
+                <form method="post">
+                    {% csrf_token %}
+                    <label>Name: <input type="text" name="text"></label><br>
+                    <br>
+
+                    <label>Password: <input type="password" name="password"></label>
+                    <br><br><br>
+
+                    <br><br><input type="submit" value="Submit">
+
+                </form>
+            </div>
+        </div>
+    </center>
+</body>
+
+</html>

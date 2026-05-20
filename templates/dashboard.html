@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+
+    <style>
+        .card-container {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            width: 70%;
+        }
+
+        .card {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+            width: 650px;
+            padding: 25px;
+            height: 650px;
+            background-color: #3300ff;
+            color: rgb(255, 255, 255);
+        }
+        .logout{
+            display: flex;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+
+<body>
+
+        <div class="card-container">
+            <div class="card">
+                    <h1>To Do List</h1>
+                    <div class="logout">
+                        <h3>Dashboard</h3>
+                    </div>
+                
+
+                <div>
+
+                    <h1>Welcome {{ user.username }}</h1>
+                    <h3>Your To Do List</h3>
+
+                </div>
+
+                <form method="post" ">
+        {% csrf_token %}
+        <label>Enter to do tasks: <input type=" text" name="task"></label><br>
+                    <br>
+                    <button type="submit">Add Task</button>
+
+                </form>
+
+                <h2>Your Tasks</h2>
+                <ul>
+                    {% for task in tasks %}
+                    <li>{{ task.task }} </li>
+                    <button>
+                        <a href="{% url 'update' task.id %}" style="text-decoration: none;">Update</a>
+                    </button>
+                    <button> 
+                        <a href="{% url 'delete' task.id %}"  style="text-decoration: none;">Delete</a>
+
+                    </button>
+                    
+                    
+                    {% empty %}
+                    <li>No tasks added yet.</li>
+                    {% endfor %}
+                </ul>
+
+                <button>
+                    <a href ="{% url 'logout' %}" style="text-decoration: none;">Logout</a>
+                </button>  
+                              
+            </div>
+        </div>
+>
+
+</body>
+
+</html>

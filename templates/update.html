@@ -4,43 +4,116 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Update Task</title>
     <style>
-        .card-container {
+        /* Modern reset to perfectly center the update card on the screen */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f5f7fb;
             display: flex;
-            flex-direction: row;
             justify-content: center;
             align-items: center;
-            gap: 30px;
-            width: 70%;
+            min-height: 100vh;
+        }
+
+        .card-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            padding: 20px;
         }
 
         .card {
-            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-            border-radius: 5px;
-            width: 200px;
-            padding: 25px;
-            height: 350px;
             background-color: #3300ff;
-            color: rgb(255, 255, 255);
+            color: #ffffff;
+            width: 100%;
+            max-width: 360px; /* Consistent size matching your original forms */
+            padding: 40px 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(51, 0, 255, 0.15);
+            text-align: left;
+        }
+
+        .card h2 {
+            margin-top: 0;
+            margin-bottom: 24px;
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        /* Clean vertical spacing for the single input action */
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        label {
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* Styling the task text input field */
+        input[type="text"] {
+            padding: 10px 12px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 6px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            font-size: 15px;
+            transition: all 0.2s ease;
+            outline: none;
+        }
+
+        input[type="text"]:focus {
+            border-color: #ffffff;
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Bright interactive button style */
+        button[type="submit"] {
+            margin-top: 10px;
+            padding: 12px;
+            background-color: #ffffff;
+            color: #3300ff;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.1s ease, opacity 0.2s ease;
+        }
+
+        button[type="submit"]:hover {
+            opacity: 0.9;
+        }
+
+        button[type="submit"]:active {
+            transform: scale(0.98);
         }
     </style>
 </head>
 
 <body>
-    <center>
-        <div class="card-container">
-            <div class="card">
-                <h2>Update Task</h2>
-                <form method="post">
-                    {% csrf_token %}
-                    <label>Update Task</label>
-                    <input type="text" name="title" value="{{todo.task}}">
-                    <button type="submit">Update</button>
-                </form>
-            </div>
+
+    <!-- Cleared legacy <center> tag so the Flexbox setup takes full visual charge -->
+    <div class="card-container">
+        <div class="card">
+            <h2>Update Task</h2>
+            <form method="post">
+                {% csrf_token %}
+                <label>Update Task</label>
+                <input type="text" name="title" value="{{todo.task}}">
+                <button type="submit">Update</button>
+            </form>
         </div>
-    </center>
+    </div>
+
 </body>
 
 </html>

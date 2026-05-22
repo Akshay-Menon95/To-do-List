@@ -120,6 +120,11 @@
         <div class="card-container">
             <div class="card">
                 <h2>Login</h2>
+                {% if messages %}
+                    {% for message in messages %}
+                            <p style="color: red;">{{ message }}</p>
+                    {% endfor %}
+                {% endif %}
                 <form method="post">
                     {% csrf_token %}
                     <label>Name: <input type="text" name="text"></label><br>
